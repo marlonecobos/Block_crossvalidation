@@ -110,3 +110,25 @@ saveRDS(dk, "Results/prepared_datak.RDS")
 saveRDS(calk, "Results/calibration_resultsk.RDS")
 writeRaster(d_exp, "Results/prep_data_exploration.tiff")
 writeRaster(dk_exp, "Results/prep_data_explorationk.tiff")
+
+# read the ovjects
+cal <- readRDS("Results/calibration_results.RDS")
+calk <- readRDS("Results/calibration_resultsk.RDS")
+
+# selected models
+cal$selected_models
+calk$selected_models
+
+# fit selected models
+fm <- fit_selected(calibration_results = cal, n_replicates = 1)
+fmk <- fit_selected(calibration_results = calk, n_replicates = 1)
+
+# response curves per model but for all variables
+all_response_curves(models = fm, modelID = "Model_19")
+all_response_curves(models = fmk, modelID = "Model_13")
+
+# bivariate responses
+fm$thresholds$Model_19
+
+bivariate_response(models = fmk, variable1 = "bio_1", variable2 = "bio_12", 
+                   modelID = "Model_19")
