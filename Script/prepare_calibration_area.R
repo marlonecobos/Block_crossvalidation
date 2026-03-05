@@ -3,7 +3,6 @@ install.packages("mapedit")
 
 library(mapedit)
 library(mapview)
-#library(sf)
 library(terra)
 
 # data

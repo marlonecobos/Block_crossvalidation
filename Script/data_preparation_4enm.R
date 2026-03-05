@@ -21,10 +21,12 @@ mvars <- crop(variables, marea, mask = TRUE)
 names(mvars) <- gsub("wc2.1_5m_", "", names(mvars))
 names(mvars) 
 
+mvars <- mvars[[c(1, 12)]]
+
 
 # preparing data for models using kuenm2
 d <- prepare_data(algorithm = "maxnet", occ = sp_data[, c("x", "y")], x = "x",
-                  y = "y", raster_variables = mvars[[c(1, 12)]], 
+                  y = "y", raster_variables = mvars, 
                   n_background = 5000,  # make sure 5000 does not exceed the number of pixels in the calibration area
                   features = c("l", "lq", "lqp"),  
                   partition_method = "kfolds", n_partitions = 4,
@@ -72,10 +74,12 @@ d_block$part_data <- new_part_data
 ## Update the partitioning method to reflect the new approach
 d_block$partition_method <- "Blocks (ENMeval)"  # You can use any descriptive name
 
+d_block
+
 
 # ENMeval checkerboard
 ## Apply checkerboard partitioning using ENMeval
-enmeval_check <- get.checkerboard(occs = calib_occ, envs = mvars[[c(1, 12)]], 
+enmeval_check <- get.checkerboard(occs = calib_occ, envs = mvars, 
                                   bg = calib_bg, aggregation.factor = c(4, 8))
 
 ## Identify unique spatial blocks
@@ -107,8 +111,14 @@ d_check$part_data <- new_part_check
 ## Update the partitioning method to reflect the new approach
 d_check$partition_method <- "Checkerboard (ENMeval)"  # You can use any descriptive name
 
+d_check
+
+
 # save prepared data
 saveRDS(dk, "Results/prepared_data_gp_vs1_k.RDS")
 saveRDS(d_block, "Results/prepared_data_gp_vs1_b.RDS")
 saveRDS(d_check, "Results/prepared_data_gp_vs1_c.RDS")
+
+
+# Continue exploring data using the vignettes
 
