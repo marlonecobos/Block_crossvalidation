@@ -106,3 +106,9 @@ d_check$part_data <- new_part_check
 
 ## Update the partitioning method to reflect the new approach
 d_check$partition_method <- "Checkerboard (ENMeval)"  # You can use any descriptive name
+
+# save prepared data
+saveRDS(dk, "Results/prepared_data_gp_vs1_k.RDS")
+saveRDS(d_block, "Results/prepared_data_gp_vs1_b.RDS")
+saveRDS(d_check, "Results/prepared_data_gp_vs1_c.RDS")
+

@@ -44,4 +44,4 @@ plot(new_spatvector, border = "black", lwd = 2, add = TRUE)
 plot(marea, border = "blue", lwd = 3, add = TRUE)
 
 # save calibration area
-writeVector(marea, "Results/calibration_area_vs1_gp.gpkg")
+writeVector(marea, "Results/calibration_area_sp_vs1.gpkg")
