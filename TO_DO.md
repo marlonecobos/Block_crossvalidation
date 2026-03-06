@@ -3,13 +3,13 @@
 ### Session 2026-03-05:
 
 1. Define calibration areas for models by checking virtual niche suitable areas.
-    - Predict suitable areas in geography (North America).
-    - Overlap areas of interest (Great Plains and Sierra Madre).
-    - Define area for model calibration based on areas of interest and a limit that makes sense geographically.
+    - Predict suitable areas in geography (North America). Use suitability truncated.
+    - Mask prediction with areas of interest (Great Plains and Sierra Madre).
+    - Define area for model calibration based on masked prediction so it makes sense geographically.
     - Mask predictions with accessible areas.
+    - Generate occurrence points from masked prediction.
 
 2. Prepare data for ENM 
-    - Generate occurrence points from masked prediction.
     - Mask raster variables with calibration area.
     - Prepare data for ENM using kuenm2 prepare_data(), see [vignette](https://marlonecobos.github.io/kuenm2/articles/prepare_data.html)
         - Use 4 kfolds for data partitioning.
